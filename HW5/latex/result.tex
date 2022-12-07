@@ -1,0 +1,92 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\pagestyle{plain}   
+% \usepackage{booktabs}
+% \usepackage{subfigure}
+\usepackage{setspace}
+\date{}
+\title{AVL树与Splay树查找时间对比实验报告} 
+\author{杨景凯}
+\date{2021/3/22} 
+\begin{document} 
+% \maketitle 
+\begin{center}
+    \quad \\
+    \quad \\
+    \quad \\
+    \vskip 3.5cm
+    \heiti \zihao{1}AVL树与Splay树查找时间对比实验报告\\
+\end{center}
+\vskip 3.5cm
+\begin{quotation}
+    \songti \fontsize{30}{30}
+    \doublespacing
+    \par\setlength\parindent{12em}
+    \quad 
+\begin{center}
+    %学\hspace{0.61cm} 院：\underline{电子信息与电气工程学院}
+
+    学生姓名：\underline{\qquad    \quad \quad 杨景凯    \quad  \quad\qquad }
+
+    学\hspace{0.61cm} 号：\underline{\quad \quad\quad520021910550\quad\quad}
+
+\end{center}
+    
+    \centering
+    2022年3月22日
+\end{quotation}
+\clearpage
+\tableofcontents
+\clearpage
+\section{实验介绍}
+\subsection{实验数据}
+
+实验需要首先对AVL树和Splay树插入数据，并从插入的数据中寻找一个数据子集作为查找集，对查找集中的数据随机进行一定次数的访问。
+
+设插入的数据量为 n， 要对数据结构查找次数为m，其中查找集的数据量为 k。
+
+在本次实验中，我选取的插入的数据量n为200（0至199），查找次数m为20000，查找集数据k为从1开始的分别占总数据n比例为5\%，25\%，45\%，65\%，85\%的值。即10，50，90，130，170。
+
+\subsection{实验方法}
+
+首先先将数据0至199由随机排列的方式插入AVL树和Splay树。再分别对AVL树和Splay树做m次查找，每次查找为查找从1开始的k个元素。分别统计AVL树和Splay树进行所有查找所需的时间。
+
+\clearpage
+
+\section{实验结果}
+
+实验结果如下表所示：
+
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        查找比例&	5\%&	25\%&	45\%&	65\%&	85\%\\
+        \hline
+        AVLTree&	0.018014&	0.066067&	0.110361&	0.164077&	0.217001\\
+        \hline
+        SplayTree&	0.017209&	0.112802&	0.215909&	0.307465&	0.394576\\
+        \hline
+    \end{tabular}
+\end{center}
+
+\section{实验结论}
+
+\subsection{结果分析}
+
+通过实验结果可以发现，在查找数据量很小，查找次数很多的情况下（即$k \ll n \ll m$时），Splay树的查找时间要短于AVL树，但是其他情况下均为AVL树的查找时间短于Splay树。
+
+随着k增加，Splay树相比于AVL树优势逐渐减小最终变为劣势，且劣势逐渐增加，AVL树优势越来越明显。
+
+因此，在查找数据量很小，查找次数很多的情况下（即$k \ll n \ll m$时），应该首先选择使用Splay树，在其余情况下，应该首先选择使用AVL树。
+
+\subsection{理论分析}
+
+上述结果的产生，是由于AVL树和Splay树的特性决定的。
+
+AVL是自平衡树，在进行搜索时，对所有数据的搜索时间是接近的。
+
+但是Splay树不是自平衡树，它会将近期搜索过的数据放于离根节点较近的位置，缩短再次对该数据搜索的时间。在进行搜索时，不同数据的搜索时间存在较大的差异。如果搜索的数据很久都没有搜索过，那么搜索时间会比较长。但是如果搜索的数据近期被搜索过，那么搜索时间会比较短。
+
+因此，针对于频繁对少量数据的搜索，Splay树体现了对AVL树的优势。
+\end{document}

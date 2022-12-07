@@ -1,0 +1,13 @@
+make.exe --dry-run --always-make --keep-going --print-directory
+make.exe: Entering directory 'e:/Programs/CorC++/dslabs/project/lsm-kv'
+g++ -g -std=c++14 -Wall   -c -o correctness.o correctness.cc
+g++ -g -std=c++14 -Wall   -c -o kvstore.o kvstore.cc
+g++ -g -std=c++14 -Wall   -c -o Sstable.o Sstable.cc
+g++ -g -std=c++14 -Wall   -c -o SkipList.o SkipList.cc
+g++ -g -std=c++14 -Wall   -c -o BloomFilter.o BloomFilter.cc
+g++ -g -std=c++14 -Wall    correctness.o kvstore.o Sstable.o SkipList.o BloomFilter.o   -o correctness
+ 
+g++ -g -std=c++14 -Wall   -c -o persistence.o persistence.cc
+g++ -g -std=c++14 -Wall    persistence.o kvstore.o Sstable.o SkipList.o BloomFilter.o   -o persistence
+make.exe: Leaving directory 'e:/Programs/CorC++/dslabs/project/lsm-kv'
+ 

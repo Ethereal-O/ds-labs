@@ -1,0 +1,111 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\pagestyle{plain}   
+% \usepackage{booktabs}
+% \usepackage{subfigure}
+\usepackage{setspace}
+\date{}
+\title{RBTree与AVLTree的对比实验报告} 
+\author{杨景凯}
+\date{2021/4/5} 
+\begin{document} 
+% \maketitle 
+\begin{center}
+    \quad \\
+    \quad \\
+    \quad \\
+    \vskip 3.5cm
+    \heiti \zihao{1}RBTree与AVLTree的对比实验报告\\
+\end{center}
+\vskip 3.5cm
+\begin{quotation}
+    \songti \fontsize{30}{30}
+    \doublespacing
+    \par\setlength\parindent{12em}
+    \quad 
+\begin{center}
+    %学\hspace{0.61cm} 院：\underline{电子信息与电气工程学院}
+
+    学生姓名：\underline{\qquad    \quad \quad 杨景凯    \quad  \quad\qquad }
+
+    学\hspace{0.61cm} 号：\underline{\quad \quad\quad520021910550\quad\quad}
+
+\end{center}
+    
+    \centering
+    2022年4月5日
+\end{quotation}
+\clearpage
+\tableofcontents
+\clearpage
+\section{实验介绍}
+\subsection{实验数据}
+
+本次实验数据分为两种，一种为顺序数据，一种为乱序数据。两种数据均为0至20,50，100，200，500，1000的数据。只是一种为顺序排列，一种为乱序排列。
+
+两种数据均提前写入文件，通过程序datacreater生成。主程序运行时，直接调用文件读取数据。这样保证了数据的稳定性，降低了数据改变的难易程度。
+\subsection{实验过程}
+实验分成两部分，两部分如下：
+第一部分，测试在红黑树和 AVL 树下，每组输入集使用顺序和乱序两种方式插入时的耗时和旋转操作次数。
+第二部分，测试在红黑树和 AVL 树下，每组输入集使用顺序和乱序两种方式查找时的耗时
+\section{实验结果}
+\subsection{实验表格}
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+        \hline
+        测试集&	20-顺序&	20-乱序&	50-顺序&	50-乱序&	100-顺序&	100-乱序\\
+        \hline
+        RBTree插入时间&	0.000017&	0.000012&	0.000015&	0.000013&	0.000023&	0.000019\\
+        \hline
+        AVLTree插入时间&	0.00001&	0.000009&	0.000026&	0.000021&	0.00004&	0.000049\\
+        \hline
+        RBTree旋转次数&	18&	18&	48&	48&	98&	98\\
+        \hline
+        AVLTree旋转次数&	12&	12&	38&	38&	85&	85\\
+        \hline
+        RBTree查找时间&	0.000004&	0.000005&	0.000014&	0.000013&	0.000064&	0.000055\\
+        \hline
+        AVLTree查找时间&	0.000003&	0.000002&	0.000006&	0.000005&	0.000011&	0.000012\\
+        \hline
+    \end{tabular}   
+
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+        \hline
+        测试集&	200-顺序&	200-乱序&	500-顺序&	500-乱序&	1000-顺序&	1000-乱序\\
+        \hline
+        RBTree插入时间&	0.000045&	0.000036&	0.00012&	0.000074&	0.000163&	0.000214\\
+        \hline
+        AVLTree插入时间&	0.000106&	0.000104&	0.000268&	0.000287&	0.000498&	0.000596\\
+        \hline
+        RBTree旋转次数&	198&	198&	498&	498&	998&	998\\
+        \hline
+        AVLTree旋转次数&	182&	182&	479&	479&	976&	976\\
+        \hline
+        RBTree查找时间&	0.000196&	0.0002&	0.001337&	0.001277&	0.004831&	0.006046\\
+        \hline
+        AVLTree查找时间&	0.000024&	0.000024&	0.000067&	0.00006&	0.000142&	0.000113\\
+        \hline
+    \end{tabular} 
+\end{center}
+
+\subsection{数据分析}
+通过分析发现，大多数情况下（除去在数据量极小时，即只有20个的情况下），RBTree插入时间均短于AVLTree插入时间，RBTree查找时间均长于AVLTree查找时间，但RBTree旋转次数均多于AVLTree旋转次数。
+
+\section{实验分析}
+\subsection{理论对比}
+理论上，RBTree插入时间应该短于AVLTree插入时间，RBTree查找时间应该长于AVLTree查找时间，RBTree旋转次数应该小于AVLTree旋转次数。
+理论上，在数据量极小时（只有20个的情况下），由于不稳定，可能会造成RBTree插入时间长于AVLTree插入时间。实验中两者差别不大，因此合理。
+但是，实验中，RBTree旋转次数均多于AVLTree旋转次数。这是与理论不符的。
+通过分析，我发现两者旋转次数是接近的，这很可能是我的数据的问题导致的两者次数与理论不符的问题。同时，查看代码可以发现，两者旋转次数并未有较大差异，而应该是两者选择在哪里旋转产生了差异。
+上述两点，我认为是导致结果的原因。
+\subsection{个人理解}
+RBTree是一种B树的变种，它将B树与BST结合，我认为这种结合有三个优点：
+第一个是节点结构更加统一，不存在“超级节点”的情况，这有利于节点的统一管理。
+第二点是由于底层为BST，因此可以直接通过对BST类的继承实现，许多算法不需要重构。
+第三点是实质为B树，因此可以具有B树的优点，例如有利于对磁盘的访问等。
+而AVLTree是BST的延申，它通过旋转维持了树的平衡。
+两者区别主要在于RBTree为访问磁盘的结构，而AVLTree是主要用于访问内存的结构。
+其次，RBTree对于平衡性要求不高，而AVLTree对平衡性要求很高。
+再次，RBTree更适合查找，而AVLTree更适合插入。
+\end{document}

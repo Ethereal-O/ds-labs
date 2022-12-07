@@ -1,0 +1,12 @@
+\contentsline {section}{\numberline {1}实验介绍}{3}{}%
+\contentsline {section}{\numberline {2}实验结果}{4}{}%
+\contentsline {subsection}{\numberline {2.1}模式串长度为10}{4}{}%
+\contentsline {subsubsection}{\numberline {2.1.1}数据表格}{4}{}%
+\contentsline {subsubsection}{\numberline {2.1.2}数据图像}{4}{}%
+\contentsline {subsection}{\numberline {2.2}模式串长度为100}{5}{}%
+\contentsline {subsubsection}{\numberline {2.2.1}数据表格}{5}{}%
+\contentsline {subsubsection}{\numberline {2.2.2}数据图像}{5}{}%
+\contentsline {subsection}{\numberline {2.3}模式串长度为1000}{6}{}%
+\contentsline {subsubsection}{\numberline {2.3.1}数据表格}{6}{}%
+\contentsline {subsubsection}{\numberline {2.3.2}数据图像}{6}{}%
+\contentsline {section}{\numberline {3}分析}{6}{}%
